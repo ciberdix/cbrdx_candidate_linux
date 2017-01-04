@@ -5,6 +5,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 import org.hibernate.type.TimestampType;
 
@@ -16,7 +17,9 @@ import java.sql.Timestamp;
 
 @Entity
 public class Auditoria {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id 
+	@SequenceGenerator(name="audit_seq",sequenceName="audit_id_seq")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="audit_seq")
 	Long CodigoAuditoria;
 	@ManyToOne
 	@JoinColumn(name="CodigoUsuario", referencedColumnName="CodigoUsuario")

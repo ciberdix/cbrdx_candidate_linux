@@ -1,22 +1,27 @@
 package com.ciberdix;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 
 @Entity
 public class Usuarios {
-	@Id @GeneratedValue(strategy = GenerationType.AUTO)
+	@Id 
+	@SequenceGenerator(name="usuarios_seq",sequenceName="usuarios_id_seq")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="usuarios_seq")
+	Long CodigoUsuario;
 	String UsuarioSistema;
 	String Contraseña;
 	@ManyToOne
 	@JoinColumn(name="CodigoRol", referencedColumnName="CodigoRol")
 	private Rol rol;
 
-	Long CodigoUsuario;
+	
 	public Long getCodigoUsuario() {
 		return CodigoUsuario;
 	}
