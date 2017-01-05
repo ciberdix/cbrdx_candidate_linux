@@ -1,0 +1,12 @@
+﻿<div class="col-md-6 col-md-offset-3">
+    <h1>Hola {{currentUser.firstName}}!</h1>
+
+    <h3>Lista de Usuarios:</h3>
+    <ul>
+        <li *ngFor="let user of users">
+            {{user.username}} ({{user.firstName}} {{user.lastName}})
+            - <a (click)="deleteUser(user.id)">Borar</a>
+        </li>
+    </ul>
+    <p><a [routerLink]="['/login']">Finalizar Sesión</a></p>
+</div>
